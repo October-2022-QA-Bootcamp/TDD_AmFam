@@ -1,0 +1,181 @@
+Title:
+Functional Automation Testing Framework
+
+Automation:
+not doing manually
+collection methods/functions
+codes java/python/js
+
+Testing:
+Who - QA / QE
+Expected Result vs Actual Result
+Testing is validating system / software against requirements which are working as expected or not
+
+Testing Types:
+1. Functional Testing
+	a. Unit Test (each of the methods)
+	b. Integration Test / System Integration (SIT) / E2E(End-To-End)
+2. Non-Functional Testing
+	a. Performance (Load, Stress, Volumn)
+	b. UI
+	c. UX
+	d. Security
+	e. 502 Compilence Testing
+	f. Network
+
+Why Automation / Benefits of Automation:
+1. Human get tired - 5
+2. Time will be saved - 6
+3. Reduce Efforts - 4
+4. Anytime it can run - 3
+5. Reusability - 2
+6. Return of investment (ROI) - 1
+
+Catagories of Testing:
+- Smoke - Major funcationalities - 1000 tests
+- Regression - Whatever all the funtionalities are currently present, you run all of the tests - 5000 test
+- Sanity - Quick and rapidly where running regression is not available or possible
+- Re-Test - After fixing a bug, we perform a retest to only that tests/functionality that has been affected
+- Ad-Hoc / Exploratory - No requirements tests
+
+Softwares/Application/Product to tests: Manually / Automation
+ - GUI Application for WEB / WEB Application
+ - GUI Application for Mobile / Mobile Application
+ - Web Services / APIs
+ - DB testing
+
+Testing Methods:
+Manual
+Automation
+
+Tools of testing - 
+Manual 
+* Web - Human Interaction by End user perspective
+* Mobile - Human Interaction by End user perspective
+* API - Postman /SoapUI
+* DB - Human Interaction for expected behaviour
+Automation 
+* Web - Selenium - Java/python/JS. Cypress, WebDriverIO, UFT(QTP), TestComplete
+* Mobile - Appium - Java/Python/JS. QMetry
+* API - Rest-Assured - Java, Karate
+* DB - JDBC (Java Database Connectivity)
+
+Testing Criteria :
+Positive - 
+Negative
+Boundary
+
+Test Strategy:
+- Test Plan
+- Acceptance Criteria
+- Exit Criteria
+- Teams & Supports
+
+Test Plans:
+- Test Cases
+- Test Criteria
+
+Automation Frameworks Types:
+TDD - Test Driven Development
+BDD - Behaviour Driven Development
+DDD - Data Driven Testing
+Hybrid - Combination any two or more framework
+Modular - Modular Driven
+Linear Scripting - Everyting all together in a single script
+Keyword - 
+
+Design Patterns:
+* Behavioural
+- Singleton
+* Creational
+- POM (Page Object Model)
+* Structural
+- Builder
+
+
+Before We Do Automation:
+Automation Benefits are present / ROI
+Resources present? - Budget,Skillsets,Time,Reuseablity,Tools,Environments
+
+Environments:
+* Internal: Deployment/Deploy
+- Dev - Where Developer create codes, unit tests / blue-fo
+www.dev.amazon.com
+- QA - SIT, E2E / E2
+www.qa.amazon.com
+- UAT - QA, BA
+www.uat.amazon.com
+- STG - Similar to PROD
+www.stg.amazon.com / E1
+* External: Release
+PROD/Live = Consumer can interact. Bread and Butter
+www.amazon.com
+
+Test Automation Metrics:
+RTM - Requirement Tracability Matrix
+Acceptence Criteria - Expected Result
+Test Data - Data to get expected result
+Test Results - Expected Result vs Actual Result
+
+Structure of TDD Automation Framework:
+src/java/main
+	- base
+		- BaseClass.java object of homepage, pages
+		(config object getProperty(url))
+	- common
+		- CommonActions.java
+		(click - logs, sendKeys - logs, dropDown - logs)
+		- CommonWaits.java
+	- pages
+		- HomePage.java object of commonActions, commonwaits
+		(clickSearchBox(), sendKeysInSearchBox(search param))
+		- ...pages
+	- utils
+		- ExcelUtils.java
+		- JDBC.java
+		- Data.java
+		- Configuration.java
+	- reporting
+		- Logs
+		- ExtentReport
+src/main/resouces
+	- config.properties
+	(url = www.amazon.com)
+src/java/test
+	- auto.test
+		- AutoTestClass. extends BaseClass.java 
+		(hompage.clickSearchBox, homepage.sendKeysInSearchBox("iphone"))
+	- home.test
+		- HomeTestClass.java
+
+Tools:
+Selenium - Automate Web Based UI Application
+TestNG/JUnit - Testing Framework (Tests, Unit Tests)
+WebDriverManager - It can create drivers and driver path
+Apache POI - 
+OJDBC/PostgreSQL - JDBC
+
+@Test
+Test Steps of a Test Sceanrio/Test Case:
+1. Go to url
+2. input 'iphone'
+3. click search
+4. click 'iphone'
+5. click add to cart
+6. clcik buy
+7. input 'credit card info'
+8. click confirm
+9. verify invoice number - unit test (real data)
+
+Different Types of Testing based on the Developer Codes:
+ - Black-Box testing - Testing without accessing developer's code in test
+ - White-Box Testing - You are using there code to test, developer's unit tests (mocking)
+ - Grey-Box Testing - 
+
+New Words:
+Insurance domain related - Quote, Policy, Bind, Claim
+UX - User Experiecne
+
+Links:
+https://www.techtarget.com/searchsoftwarequality/definition/performance-testing
+

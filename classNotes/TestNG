@@ -1,0 +1,13 @@
+TestNG annotations hierecy:
+
+@BeforeSuite
+@BeforeTest
+@BeforeGroups
+@BeforeClass
+@BeforeMethod
+@Test (method)
+@AfterMethod
+@AfterClass
+@AfterGroups
+@AfterTest
+@AfterSuite

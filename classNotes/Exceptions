@@ -1,0 +1,9 @@
+Exception:
+
+Checked Exception: Error happen during compile time. IOException
+Unchecked Exception: Error happen during runtime. NullPointerException
+
+Handling Exceptions:
+- using Try Catch block to catch the exception before runtime, so runtime will not throw the exception. Inside the code/method
+- Declaring Exception using throws someException , will cause runtime exception. after method declaretion before method body
+- throw new someException() means it will deliberatly we are throwing exception. Inside the method
