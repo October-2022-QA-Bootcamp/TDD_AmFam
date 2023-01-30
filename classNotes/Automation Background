@@ -31,11 +31,11 @@ Why Automation / Benefits of Automation:
 5. Reusability - 2
 6. Return of investment (ROI) - 1
 
-Catagories of Testing:
-- Smoke - Major funcationalities - 1000 tests
-- Regression - Whatever all the funtionalities are currently present, you run all of the tests - 5000 test
+Categories of Testing:
+- Smoke - Major functionalities - 1000 tests
+- Regression - Whatever all the functionalities are currently present, you run all of the tests - 5000 test
 - Sanity - Quick and rapidly where running regression is not available or possible
-- Re-Test - After fixing a bug, we perform a retest to only that tests/functionality that has been affected
+- Re-Test - After fixing a bug, we perform a re-test to only that tests/functionality that has been affected
 - Ad-Hoc / Exploratory - No requirements tests
 
 Softwares/Application/Product to tests: Manually / Automation
