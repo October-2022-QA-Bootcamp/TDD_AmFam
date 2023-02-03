@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import amfam.tdd.common.CommonActions;
+import static amfam.tdd.common.CommonActions.*;
 
 public class LandingPage {
 
@@ -18,10 +18,10 @@ public class LandingPage {
 	WebElement startNewQuoteBtn;
 	
 	public void validateLandingPageTitle(String expectedTitle) {
-		CommonActions.validate(landingPageTitle, expectedTitle);
+		validate(landingPageTitle, expectedTitle);
 	}
 	
-	public void clickStartNewQuote() {
-		CommonActions.click(startNewQuoteBtn);
+	public void clickStartNewQuoteBtn() {
+		click(startNewQuoteBtn);
 	}
 }

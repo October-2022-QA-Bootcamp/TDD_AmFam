@@ -9,15 +9,16 @@ public class DefaultValue {
 	char c;
 	boolean b;
 	
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void defaultValueTesting() {
 		System.out.println(string);
 		System.out.println(a);
 		System.out.println((int)c);
 		System.out.println(b);
+		System.out.printf("%s Name is : %s Ibne Hussain /n", 2, "Nasir");
 	}
 	
-	@Test
+	@Test(enabled = false)
 	public void parseLongValidation() {
 		String aString = " 123*kskfnk12fakjfvna;kjn ";
 		String bString = aString.trim().replaceAll("[^0-9]", "");
