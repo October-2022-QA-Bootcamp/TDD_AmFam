@@ -7,10 +7,11 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
 import static amfam.tdd.utils.IConstant.*;
 import static amfam.tdd.utils.Constant.*;
 import java.time.Duration;
+import amfam.tdd.objects.AddressPage;
+import amfam.tdd.objects.GetAQuotePage;
 import amfam.tdd.objects.LandingPage;
 import amfam.tdd.utils.Constant;
 import amfam.tdd.utils.ReadProperties;
@@ -20,12 +21,9 @@ public class BaseClass {
 	
 	protected WebDriver driver;
 	protected LandingPage landingPage;
-	ReadProperties envVar;
-	
-	@BeforeSuite
-	public void setUpSuite() {
-		envVar = new ReadProperties();
-	}
+	protected GetAQuotePage getAQuotePage;
+	protected AddressPage addressPage;
+	ReadProperties envVar = new ReadProperties();
 	
 	@BeforeMethod
 	public void setUpDriver() {
@@ -49,6 +47,8 @@ public class BaseClass {
 	
 	private void initClasses(WebDriver driver) {
 		landingPage = new LandingPage(driver);
+		getAQuotePage = new GetAQuotePage(driver);
+		addressPage = new AddressPage(driver);
 	}
 	
 	private void initDriver(String driverName) {

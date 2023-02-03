@@ -13,7 +13,12 @@ public class CommonActions {
 	
 	public static void validate(WebElement element, String expected) {
 		String actual = element.getText();
-		Logs.log("Validating ---> Actual : ***" + actual + "***. Expected : ***" + expected + "***");
+		Logs.log("Validating ---> Actual : *** " + actual + " ***. Expected : *** " + expected + " ***");
 		Assert.assertEquals(actual, expected);
+	}
+	
+	public static void insert(WebElement element, String value) {
+		element.sendKeys(value);
+		Logs.log(value + " <--- This value has been passed into ---> " + element );
 	}
 }
