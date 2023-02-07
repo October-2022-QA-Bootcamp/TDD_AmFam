@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+<parameter name="browser" value="chrome"></parameter>
+  <test thread-count="5" name="Test">
+  <parameter name="expectedTitle1" value="Insurance designed with you in mind"/>
+  <parameter name="getAQtTitle1" value="Get a Quote"/>
+  <parameter name="zipCode1" value=""/>
+  <parameter name="addressTitle" value="Verify your city and state"/>
+  <parameter name="firstName" value="Mr Jhon"></parameter>
+  <parameter name="lastName" value="Dow"></parameter>
+    <classes>
+      <class name="amfam.tdd.test.auto.ParameterisedTestsAuto"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
