@@ -1,12 +1,13 @@
 package amfam.tdd.test.auto;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import amfam.tdd.base.BaseClass;
 import amfam.tdd.reporting.Logs;
 
 public class AutoQuoteTest extends BaseClass{
 
-	@Test(groups = "auto")
+	@Test(enabled = false, groups = "auto")
 	public void create_AutoQuoteTest() {
 		landingPage.validateLandingPageTitle("Insurance designed with you in mind");
 		landingPage.clickStartNewQuoteBtn();
@@ -17,13 +18,27 @@ public class AutoQuoteTest extends BaseClass{
 		addressPage.verifyAddressPageTitle("Verify your city and state");
 	}
 	
-	@Test(priority = 0, groups = {"auto", "non-func"})
+	@Test(enabled = true, priority = 0, groups = {"auto", "non-func"}, dependsOnMethods = "test2", ignoreMissingDependencies = true)
 	public void test1() {
 		Logs.log("Test1");
 	}
 	
-	@Test(priority = 1, groups = {"auto", "non-func"})
+	@Test(enabled = false, priority = 1, groups = {"auto", "non-func"}, invocationCount = 2)
 	public void test2() {
 		Logs.log("Test2");
+	}
+	
+	@Test(enabled = false, priority = 1, groups = {"auto", "non-func"})
+	public void test3() {
+		//Step1
+		//Step2
+		Logs.log("Test3");
+		Assert.fail();
+	}
+	
+	@Test(enabled = false, priority = 1, groups = {"auto", "non-func"}, retryAnalyzer = amfam.tdd.retry.RetryFailedTests.class)
+	public void testRetry() {
+		Logs.log("Retry Test");
+		Assert.fail();
 	}
 }

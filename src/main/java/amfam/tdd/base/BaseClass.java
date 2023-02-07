@@ -7,8 +7,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import static amfam.tdd.utils.IConstant.*;
-import static amfam.tdd.utils.Constant.*;
 import java.time.Duration;
 import amfam.tdd.objects.AddressPage;
 import amfam.tdd.objects.GetAQuotePage;
@@ -25,10 +25,11 @@ public class BaseClass {
 	protected AddressPage addressPage;
 	ReadProperties envVar = new ReadProperties();
 	
+	@Parameters("browser")
 	@BeforeMethod
-	public void setUpDriver() {
+	public void setUpDriver(String browserName) {
 		//Enum example
-		String browserName = envVar.getProperty(getString(browser));
+		//String browserName = envVar.getProperty(getString(browser));
 		//String browserName = envVar.getProperty(browser.name());
 		
 		//IConstant interface example
@@ -81,6 +82,7 @@ public class BaseClass {
 		driver.quit();
 	}
 	
+	@SuppressWarnings("unused")
 	private String getString(Constant constant) {
 		return constant.name();
 	}
