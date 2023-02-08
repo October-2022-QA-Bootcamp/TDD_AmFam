@@ -1,5 +1,6 @@
 package amfam.tdd.common;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import amfam.tdd.reporting.Logs;
@@ -7,18 +8,34 @@ import amfam.tdd.reporting.Logs;
 public class CommonActions {
 
 	public static void click(WebElement element) {
-		element.click();
-		Logs.log(element + " ---> has been clicked");
+		try {
+			element.click();
+			Logs.log(element + " ---> has been clicked");
+		} catch (NullPointerException | NoSuchElementException e) {
+			Logs.log(element + " ---> Element Not Found");
+			Assert.fail();
+		}
 	}
-	
+
 	public static void validate(WebElement element, String expected) {
-		String actual = element.getText();
-		Logs.log("Validating ---> Actual : *** " + actual + " ***. Expected : *** " + expected + " ***");
+		String actual = "";
+		try {
+			actual = element.getText();
+			Logs.log("Validating ---> Actual : *** " + actual + " ***. Expected : *** " + expected + " ***");
+		} catch (NullPointerException | NoSuchElementException e) {
+			Logs.log(element + " ---> Element Not Found");
+			Assert.fail();
+		}
 		Assert.assertEquals(actual, expected);
 	}
-	
+
 	public static void insert(WebElement element, String value) {
-		element.sendKeys(value);
-		Logs.log(value + " <--- This value has been passed into ---> " + element );
+		try {
+			element.sendKeys(value);
+			Logs.log(value + " <--- This value has been passed into ---> " + element);
+		} catch (NullPointerException | NoSuchElementException e) {
+			Logs.log(element + " ---> Element Not Found");
+			Assert.fail();
+		}
 	}
 }

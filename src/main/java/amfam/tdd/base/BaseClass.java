@@ -5,10 +5,16 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
+
+import com.aventstack.extentreports.Status;
+
 import static amfam.tdd.utils.IConstant.*;
+
+import java.lang.reflect.Method;
 import java.time.Duration;
 import amfam.tdd.objects.AddressPage;
 import amfam.tdd.objects.GetAQuotePage;
@@ -17,7 +23,7 @@ import amfam.tdd.utils.Constant;
 import amfam.tdd.utils.ReadProperties;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class BaseClass {
+public class BaseClass extends ExtentListener{
 	
 	protected WebDriver driver;
 	protected LandingPage landingPage;
@@ -80,6 +86,18 @@ public class BaseClass {
 	@AfterMethod
 	public void tearUp() {
 		driver.quit();
+	}
+	
+	@AfterMethod
+	public void getResult(ITestResult result, Method method) {
+		if(result.getStatus() == ITestResult.SUCCESS) {
+			test.log(Status.PASS, PASSED);
+		}else if(result.getStatus() == ITestResult.FAILURE) {
+			test.log(Status.FAIL, FAILED);
+			test.addScreenCaptureFromPath(captureScreenShot(driver, method.getName()));
+		}else if(result.getStatus() == ITestResult.SKIP) {
+			test.log(Status.SKIP, SKIPPED);
+		}
 	}
 	
 	@SuppressWarnings("unused")
