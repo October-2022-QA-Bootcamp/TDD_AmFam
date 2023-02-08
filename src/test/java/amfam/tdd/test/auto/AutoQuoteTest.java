@@ -28,8 +28,8 @@ public class AutoQuoteTest extends BaseClass{
 		Logs.log("Test2");
 	}
 	
-	@Test(enabled = false, priority = 1, groups = {"auto", "non-func"})
-	public void test3() {
+	@Test(enabled = true, priority = 1, groups = {"auto", "non-func"})
+	public void failedTestScenarios() {
 		//Step1
 		//Step2
 		Logs.log("Test3");
