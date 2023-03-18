@@ -14,7 +14,7 @@ public class GetAQuotePage {
 	
 	@FindBy(className = "h1")
 	WebElement getAQuotePageTitle;
-	@FindBy(id = "uid_61")
+	@FindBy(id = "uid_60")
 	WebElement zipCoddInput;
 	@FindBy(xpath = "//div[@value='Car']")
 	WebElement carLobBtn;
@@ -24,10 +24,12 @@ public class GetAQuotePage {
 	WebElement letsGoBtn;
 	
 	public void validateGetAQuotePageTitle(String expected) {
+		sleep(2);
 		validate(getAQuotePageTitle, expected);
 	}
 	
 	public void insertZipCodeField(String zip) {
+		sleep(1);
 		insert(zipCoddInput, zip);
 	}
 	

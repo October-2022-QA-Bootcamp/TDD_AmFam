@@ -5,9 +5,9 @@
 	<test thread-count="5" name="Test">
 		<groups>
 			<run>
-				<exclude name="auto"></exclude>
+				<exclude name="regression"></exclude>
 				<exclude name="non-func"></exclude>
-				<!--include name="home"></include-->
+				<!--include name="smoke"></include-->
 			</run>
 		</groups>
 		<classes>

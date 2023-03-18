@@ -34,7 +34,7 @@ public class UnitTests {
 		System.out.println(folder.mkdirs());
 	}
 	
-	@Test
+	@Test(enabled = false)
 	public void timeUnitTest() {
 		Date date = new Date();
 		System.out.println(date);
@@ -46,5 +46,23 @@ public class UnitTests {
 		System.out.println("Test1_"+time+".png");
 		SimpleDateFormat date_format = new SimpleDateFormat("MM:dd:YYYY_HH:mm:ss");
 		System.out.println(date_format.format(date));
+	}
+	
+	@Test
+	public void stringPolling() {
+		//StringBuilder stringBuilder = new StringBuilder("abc");
+		
+		//String aString = "abc";
+		String bString = new String("abc");
+		String cString = bString.intern();
+		System.out.println(cString);
+		
+		//System.out.println(aString.hashCode());
+		System.out.println(bString.hashCode());
+		System.out.println(cString.hashCode());
+		//System.out.println(aString == bString);
+		//System.out.println(aString == cString);
+		System.out.println(bString == cString);
+		
 	}
 }

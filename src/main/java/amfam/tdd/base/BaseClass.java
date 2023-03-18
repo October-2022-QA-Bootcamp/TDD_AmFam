@@ -2,6 +2,7 @@ package amfam.tdd.base;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
@@ -31,22 +32,22 @@ public class BaseClass extends ExtentListener{
 	protected AddressPage addressPage;
 	ReadProperties envVar = new ReadProperties();
 	
-	@Parameters("browser")
+	@Parameters({"browser", "env"})
 	@BeforeMethod
-	public void setUpDriver(String browserName) {
+	public void setUpDriver(String browserName, String env) {
 		//Enum example
 		//String browserName = envVar.getProperty(getString(browser));
 		//String browserName = envVar.getProperty(browser.name());
 		
 		//IConstant interface example
 		//String browserName = envVar.getProperty(BROWSER);
-		String url = envVar.getProperty(URL);
+		String givenUrl = envVar.getProperty(env+"Url");
 		long pageLoadWait = envVar.getNumProperty(PAGELOAD_WAIT);
 		long implicitWait = envVar.getNumProperty(IMPLECIT_WAIT);
 		
 		initDriver(browserName);
 		initClasses(driver);
-		driver.get(url);
+		driver.get(givenUrl);
 		driver.manage().window().maximize()	;
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(pageLoadWait));
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitWait));
@@ -62,7 +63,9 @@ public class BaseClass extends ExtentListener{
 		switch (driverName) {
 		case CHROME:
 			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver();
+			ChromeOptions options = new ChromeOptions();
+			options.addArguments("--remote-allow-origins=*");
+			driver = new ChromeDriver(options);
 			break;
 		case FIREFOX:
 			WebDriverManager.firefoxdriver().setup();
