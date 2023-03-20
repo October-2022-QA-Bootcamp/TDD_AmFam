@@ -30,18 +30,18 @@ public class BaseClass extends ExtentListener{
 	protected LandingPage landingPage;
 	protected GetAQuotePage getAQuotePage;
 	protected AddressPage addressPage;
-	ReadProperties envVar = new ReadProperties();
+	protected ReadProperties envVar = new ReadProperties();
 	
-	@Parameters({"browser", "env"})
+	@Parameters({"browser"})
 	@BeforeMethod
-	public void setUpDriver(String browserName, String env) {
+	public void setUpDriver(String browserName) {
 		//Enum example
 		//String browserName = envVar.getProperty(getString(browser));
 		//String browserName = envVar.getProperty(browser.name());
 		
 		//IConstant interface example
 		//String browserName = envVar.getProperty(BROWSER);
-		String givenUrl = envVar.getProperty(env+"Url");
+		String givenUrl = envVar.getProperty(URL);
 		long pageLoadWait = envVar.getNumProperty(PAGELOAD_WAIT);
 		long implicitWait = envVar.getNumProperty(IMPLECIT_WAIT);
 		
