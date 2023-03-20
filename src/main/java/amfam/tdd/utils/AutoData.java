@@ -7,7 +7,7 @@ public class AutoData {
 	private String landingPageTitle;
 	private String getAQtPageTitle;
 
-	public AutoData(String zipCode, String addressPageTitle1, String landingPageTitle, String getAQtPageTitle) {
+	public AutoData(String landingPageTitle, String getAQtPageTitle, String zipCode, String addressPageTitle1) {
 		if(zipCode == null || addressPageTitle1 == null || landingPageTitle == null || getAQtPageTitle == null ||
 				zipCode.length() == 0 || addressPageTitle1.length() == 0 || landingPageTitle.length() == 0
 				|| getAQtPageTitle.length() == 0) {

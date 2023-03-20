@@ -9,7 +9,7 @@ public interface IConstant {
 	String EDGE = "edge";
 	String SAFARI = "safari";
 	
-	String URL = "url";
+	String URL = "prodUrl";
 	
 	String EXPLICIT_WAIT = "explicitWait";
 	String IMPLECIT_WAIT = "implicitlyWait";
@@ -18,4 +18,7 @@ public interface IConstant {
 	String PASSED = "Test PASSED";
 	String FAILED = "Test FAILED";
 	String SKIPPED = "Test SKIPPED";
+	
+	String EXCEL_PATH = "excelFilePath";
+	String EXCEL_SHEET = "excelSheetName";
 }

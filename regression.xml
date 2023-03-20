@@ -5,7 +5,8 @@
   <test thread-count="5" name="Test">
     <classes>
       <!--class name="amfam.tdd.test.home.HomeQuoteTest"/-->
-      <class name="amfam.tdd.test.auto.AutoQuoteTest"/>
+      <!--class name="amfam.tdd.test.auto.AutoQuoteTest"/-->
+      <class name="amfam.tdd.test.auto.ParameterisedTestsAuto"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
