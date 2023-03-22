@@ -78,4 +78,11 @@ public class ExcelTest {
 		System.out.println(listOfMaps.get(1).get("Zip Code"));
 		System.out.println(listOfMaps.get(1).get("Get A Quote Title"));
 	}
+	
+	@Test
+	public void getSheet2Data() {
+		ExcelUtils utils2 = new ExcelUtils("src/main/resources/AutoTestData.xlsx", "Sheet2");
+		List<Map<String, String>> data = utils2.getMapDataList();
+		System.out.println(data.get(0).get("pass"));
+	}
 }

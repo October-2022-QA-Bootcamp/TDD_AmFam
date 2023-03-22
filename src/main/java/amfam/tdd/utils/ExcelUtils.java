@@ -28,6 +28,8 @@ public class ExcelUtils {
 				book = new HSSFWorkbook(fileInputStream);
 			}
 			sheet = book.getSheet(sheetName);
+			book.close();
+			fileInputStream.close();
 		} catch (IOException e) {
 			Logs.log("File not found : " + new File(filePath).getAbsolutePath());
 		}

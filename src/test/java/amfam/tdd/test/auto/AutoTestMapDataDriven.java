@@ -35,8 +35,8 @@ public class AutoTestMapDataDriven extends BaseClass{
 		addressPage.verifyAddressPageTitle(autoData.getAddressPageTitle());
 	}
 	
-	@DataProvider(name = "list")
-	public Iterator<List<String>> getList(){
+	@DataProvider(name = "lists")
+	public Iterator<List<String>> getLists(){
 		List<List<String>> lists = new ArrayList<>();
 		List<String> list = new ArrayList<>();
 		list.add("Insurance designed with you in mind");
@@ -47,9 +47,41 @@ public class AutoTestMapDataDriven extends BaseClass{
 		return lists.iterator();
 	}
 	
-	@Test(dataProvider = "list")
+	@Test(dataProvider = "lists")
 	public void create_AutoQuoteTest_AutoData(List<String>list) {
 		AutoData autoData = new AutoData(list.get(0), list.get(1), list.get(2), list.get(3));
+		landingPage.validateLandingPageTitle(autoData.getLandingPageTitle());
+		landingPage.clickStartNewQuoteBtn();
+		getAQuotePage.validateGetAQuotePageTitle(autoData.getGetAQtPageTitle());
+		getAQuotePage.insertZipCodeField(autoData.getZipCode());
+		getAQuotePage.clickCarLobBtn();
+		getAQuotePage.clickLetsGoBtn();
+		addressPage.verifyAddressPageTitle(autoData.getAddressPageTitle());
+	}
+	
+	@DataProvider(name = "list")
+	public Iterator<Object[]> getList(){
+		List<Object[]> list = new ArrayList<>();
+		Object[] set1 = new Object[4];
+		set1[0] = ("Insurance designed with you in mind");
+		set1[1] = ("Get a Quote");
+		set1[2] = ("54114");
+		set1[3] = ("Verify your city and state");
+		list.add(set1);
+		
+		Object[] set2 = new Object[4];
+		set2[0] = ("Insurance designed with you in mind");
+		set2[1] = ("Get a Quote");
+		set2[2] = ("54115");
+		set2[3] = ("Verify your city and state");
+		list.add(set2);
+		
+		return list.iterator();
+	}
+	
+	@Test(dataProvider = "list")
+	public void create_AutoQuoteTest_AutoData_List(String expectedTitle, String getAQtTitle, String zipCode, String addressTitle) {
+		AutoData autoData = new AutoData(expectedTitle, getAQtTitle, zipCode, addressTitle);
 		landingPage.validateLandingPageTitle(autoData.getLandingPageTitle());
 		landingPage.clickStartNewQuoteBtn();
 		getAQuotePage.validateGetAQuotePageTitle(autoData.getGetAQtPageTitle());
