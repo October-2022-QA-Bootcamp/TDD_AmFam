@@ -22,11 +22,13 @@ public class CommonActions {
 		try {
 			actual = element.getText();
 			Logs.log("Validating ---> Actual : *** " + actual + " ***. Expected : *** " + expected + " ***");
+
 		} catch (NullPointerException | NoSuchElementException e) {
 			Logs.log(element + " ---> Element Not Found");
 			Assert.fail();
 		}
 		Assert.assertEquals(actual, expected);
+		//Assert.assertTrue(actual.contains(expected));
 	}
 
 	public static void insert(WebElement element, String value) {
