@@ -5,7 +5,7 @@
   <test thread-count="5" name="Test">
   <parameter name="expectedTitle1" value="Insurance designed with you in mind"/>
   <parameter name="getAQtTitle1" value="Get a Quote"/>
-  <parameter name="zipCode1" value=""/>
+  <parameter name="zipCode1" value="54114"/>
   <parameter name="addressTitle" value="Verify your city and state"/>
   <parameter name="firstName" value="Mr Jhon"></parameter>
   <parameter name="lastName" value="Dow"></parameter>
