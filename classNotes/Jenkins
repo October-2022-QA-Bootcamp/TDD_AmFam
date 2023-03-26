@@ -1,0 +1,19 @@
+Jenkins:
+CI/CD - Continues Integration / Continues Deployment
+
+Environments:
+DEV -> QA : Deployment (E1) (White/Blue) (www.dev-amazon.com)
+QA -> UAT : Deployment (E2) (Green/Golden) (www.qa-amazon.com)
+UAT -> STG: Deployment (TrainP)(www.uat-amazon.com)
+STG : Pre-PROD Deployment/ Test-Bed (www.stg-amazon.com)
+STG -> PROD: Release
+PROD : Deployment / Release (www.amazon.com)
+
+DEV - Application Code
+QA - Automation Code / 3rd Party Code
+Automation - Regression Suite
+DEV (push) ==Network===DB===Servcie==Security==Regression=== Deployment (QA/STG)
+1. Existing Network
+2. DB Integration
+3. Servcie Integration
+4. Security Integration

@@ -1,21 +1,24 @@
 package amfam.tdd.base;
 
+import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
-
 import com.aventstack.extentreports.Status;
-
 import static amfam.tdd.utils.IConstant.*;
-
 import java.lang.reflect.Method;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
 import amfam.tdd.objects.AddressPage;
 import amfam.tdd.objects.GetAQuotePage;
 import amfam.tdd.objects.LandingPage;
@@ -29,27 +32,21 @@ public class BaseClass extends ExtentListener{
 	protected LandingPage landingPage;
 	protected GetAQuotePage getAQuotePage;
 	protected AddressPage addressPage;
-	ReadProperties envVar = new ReadProperties();
+	protected ReadProperties envVar = new ReadProperties();
 	
-	@Parameters("browser")
+	@Parameters({"browser"})
 	@BeforeMethod
 	public void setUpDriver(String browserName) {
-		//Enum example
-		//String browserName = envVar.getProperty(getString(browser));
-		//String browserName = envVar.getProperty(browser.name());
-		
-		//IConstant interface example
-		//String browserName = envVar.getProperty(BROWSER);
-		String url = envVar.getProperty(URL);
+		String givenUrl = envVar.getProperty(URL);
 		long pageLoadWait = envVar.getNumProperty(PAGELOAD_WAIT);
 		long implicitWait = envVar.getNumProperty(IMPLECIT_WAIT);
 		
 		initDriver(browserName);
 		initClasses(driver);
-		driver.get(url);
 		driver.manage().window().maximize()	;
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(pageLoadWait));
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitWait));
+		driver.get(givenUrl);
 	}
 	
 	private void initClasses(WebDriver driver) {
@@ -62,7 +59,9 @@ public class BaseClass extends ExtentListener{
 		switch (driverName) {
 		case CHROME:
 			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver();
+			ChromeOptions options = new ChromeOptions();
+			options.addArguments("--remote-allow-origins=*");
+			driver = new ChromeDriver(options);
 			break;
 		case FIREFOX:
 			WebDriverManager.firefoxdriver().setup();
@@ -76,11 +75,36 @@ public class BaseClass extends ExtentListener{
 			WebDriverManager.safaridriver().setup();
 			driver = new SafariDriver();
 			break;
+		case REMOTE:
+			driver = setBrowserStackCapabilities();
+			break;
 		default:
 			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
 			break;
 		}
+	}
+	
+	public WebDriver setBrowserStackCapabilities() {
+		ReadProperties bsProperties = new ReadProperties(0);
+		
+		MutableCapabilities capabilities = new MutableCapabilities();
+		capabilities.setCapability(BS_BROWSER_NAME, bsProperties.getProperty(BS_BROWSER_NAME));
+		HashMap<String, Object> browserstackOptions = new HashMap<String, Object>();
+		browserstackOptions.put(BS_OS, bsProperties.getProperty(BS_OS));
+		browserstackOptions.put(BS_OS_VER, bsProperties.getProperty(BS_OS_VER));
+		browserstackOptions.put(BS_BROWSER_VER, bsProperties.getProperty(BS_BROWSER_VER));
+		capabilities.setCapability(BS_OPT, browserstackOptions);
+
+		String urlString = "https://" + bsProperties.getProperty(BS_USER) + ":" + bsProperties.getProperty(BS_PASS)
+				+ bsProperties.getProperty(BS_URL);
+		URL url = null;
+		try {
+			url = new URL(urlString);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+		return new RemoteWebDriver(url,capabilities);
 	}
 	
 	@AfterMethod
