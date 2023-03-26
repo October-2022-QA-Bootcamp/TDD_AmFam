@@ -7,13 +7,19 @@ import java.util.Properties;
 public class ReadProperties {
 
 	Properties properties;
-	
+	String environmentFileName = "environment.properties";
+	String bs_fileName = "browser_stack.properties";
+
 	public ReadProperties() {
-		loadProperties();
+		loadProperties(environmentFileName);
 	}
-	
-	private void loadProperties() {
-		InputStream inputStream = getClass().getClassLoader().getResourceAsStream("environment.properties");
+
+	public ReadProperties(int profileNumber) {
+		loadProperties(bs_fileName);
+	}
+
+	private void loadProperties(String fileName) {
+		InputStream inputStream = getClass().getClassLoader().getResourceAsStream(fileName);
 		properties = new Properties();
 		try {
 			properties.load(inputStream);
@@ -21,25 +27,25 @@ public class ReadProperties {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public String getProperty(String key) {
-		if(key != null) {
+		if (key != null) {
 			return properties.getProperty(key);
-		}else {
+		} else {
 			return null;
-		}	
+		}
 	}
-	
+
 	public long getNumProperty(String key) {
 		String value = getProperty(key);
-		if(value != null) {
+		if (value != null) {
 			String refinedValue = value.trim().replaceAll("[^0-9]", "");
 			return Long.parseLong(refinedValue);
-		}else {
+		} else {
 			return 0;
-		}	
+		}
 	}
-	
+
 //	public static void main(String[] args) {
 //		ReadProperties readProperties = new ReadProperties();
 //		String urlString = readProperties.getProperty("bowser");

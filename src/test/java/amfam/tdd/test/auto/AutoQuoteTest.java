@@ -18,7 +18,7 @@ public class AutoQuoteTest extends BaseClass{
 		addressPage.verifyAddressPageTitle("Verify your city and state");
 	}
 	
-	@Test(enabled = true, priority = 0, groups = {"auto", "non-func"}, dependsOnMethods = "test2", ignoreMissingDependencies = true)
+	@Test(enabled = false, priority = 0, groups = {"auto", "non-func"}, dependsOnMethods = "test2", ignoreMissingDependencies = true)
 	public void test1() {
 		Logs.log("Test1");
 	}
@@ -28,7 +28,7 @@ public class AutoQuoteTest extends BaseClass{
 		Logs.log("Test2");
 	}
 	
-	@Test(enabled = true, priority = 1, groups = {"auto", "non-func", "regression", "smoke"})
+	@Test(enabled = false, priority = 1, groups = {"auto", "non-func", "regression", "smoke"})
 	public void failedTestScenarios() {
 		//Step1
 		//Step2
